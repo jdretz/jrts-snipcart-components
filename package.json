@@ -3,7 +3,7 @@
   "version": "1.0.13",
   "description": "Component library for Snipcart components",
   "main": "lib/index.js",
-  "types": "lib",
+  "types": "lib/index.d.ts",
   "scripts": {
     "build": "webpack",
     "styleguide": "styleguidist server",
@@ -35,5 +35,9 @@
     "typings-for-scss-modules-loader": "^1.5.1",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jdretz/jrts-snipcart-components"
   }
 }

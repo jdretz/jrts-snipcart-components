@@ -4,7 +4,7 @@ import '../../styles.scss';
 /**
  * Column Properties
  */
-interface IButton {
+export interface IButton {
     /** Button text property */
     text: string
 }
