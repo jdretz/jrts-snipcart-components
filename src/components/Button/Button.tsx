@@ -11,7 +11,7 @@ export interface IButton {
 
 export const Button: React.FC<IButton> = ({ text }) => {
     return (
-        <button className="button">{text}</button>
+        <button role="button" className="button">{text}</button>
     )
 };
 
