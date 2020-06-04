@@ -10,7 +10,7 @@ export interface ITag {
     /** CSS classnames to be passed to classname */
     className?: string,
     /** React styles object */
-    style?: React.CSSProperties
+    style?: React.CSSProperties,
 }
 
 export const Tag: React.FC<ITag> = ({ tagName, className, style }) => {
