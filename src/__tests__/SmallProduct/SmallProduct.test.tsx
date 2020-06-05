@@ -14,7 +14,7 @@ const Image: React.FC = () => {
 
 const Categories: React.FC = () => {
     return (
-        <a>Random Category</a>
+        <a>Random Category Element</a>
     )
 }
 
@@ -44,6 +44,6 @@ describe("<SmallProduct />", () => {
     expect(screen.queryByText(anyTitleString)).toHaveTextContent(anyTitleString)
     expect(screen.queryByText(anyPriceString)).toHaveTextContent(anyPriceString)
     expect(screen.queryByText(anyVendorString)).toHaveTextContent(anyVendorString)
-    expect(screen.queryByText("Random Category")).toHaveTextContent("Random Category")
+    expect(screen.queryByText("Random Category Element")).toHaveTextContent("Random Category Element")
   });
 });

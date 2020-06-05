@@ -35,7 +35,7 @@ const SmallProduct: React.FC<ISmallProduct> = ({
           <div className="small-product-info-container">
             {vendor && <small>vendor</small>}
             <h2>{productName}</h2>
-            {price && <p>{price}</p>}
+            {price && <p className="small-product-price">{price}</p>}
             {children}
             {categories && categories}
             {tags && <div>{tags}</div>}
