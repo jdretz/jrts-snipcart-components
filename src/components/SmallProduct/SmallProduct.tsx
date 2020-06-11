@@ -1,5 +1,4 @@
 import React from 'react'
-import { ITag } from '../Tag/Tag'
 import '../../styles.scss'
 
 export interface ISmallProduct {

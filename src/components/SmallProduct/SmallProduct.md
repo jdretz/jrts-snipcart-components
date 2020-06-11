@@ -19,7 +19,7 @@ const Categories = () => {
 
 const tags = ['logos'];
 
-const tagList = tags.map((tag) => <Tag tagName={tag} />);
+const tagList = tags.map((tag,i) => <Tag key={i} tagName={tag} />);
 
 <SmallProduct
     productName="Title of Product"

@@ -4,6 +4,8 @@ Product is used to display full product information as well as offer a chance to
 
 ```js
 import BuyButton from '../BuyButton/BuyButton';
+import CustomProductOptions from '../CustomProductOptions/CustomProductOptions'
+import { sanityTestProductWithVariants } from '../../__fixtures__/sanity';
 
 const Image = () => {
     return (
@@ -23,12 +25,13 @@ const ProductDescription = () => {
     )
 };
 
-const CustomOptions = () => (
-    <>
-        <p>Sizes</p>
-        <p>10 | 11 | 11.5</p>
-    </>
-);
+const productVariants = sanityTestProductWithVariants.variants.map(variant => {
+    return {
+        name: variant.name,
+        type: "options",
+        options: variant.options.join("|")
+    }
+});
 
 <Product
     productTitle={'Product Name'}
@@ -46,8 +49,9 @@ const CustomOptions = () => (
     length={5}
     shortProductDescription={'This is such a useful product'}
     productDescription={<ProductDescription />}
-    customOptions={<CustomOptions />}
+    customOptions={sanityTestProductWithVariants.variants}
     displayPrice={"$10.00"}
     buttonClassNames={'regular-buy-button'}
+    variants={productVariants}
     />
 ```

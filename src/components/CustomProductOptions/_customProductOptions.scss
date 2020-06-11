@@ -1,0 +1,17 @@
+.custom-option {
+    padding: 0.25rem 0.75rem;
+    margin: 10px;
+    background: white;
+    border: none;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.selected {
+    background: #EEE;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}

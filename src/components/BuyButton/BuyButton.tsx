@@ -2,8 +2,12 @@ import React from 'react'
 
 export type ProductOption = {
     name: string,
-    type: "options" | "checkbox" | "textarea",
-    options?: string[]
+    type: "options",
+    options: string
+}
+
+export interface ICustomDataProperty {
+    [key: string]: string
 }
 
 export interface IBuyButton {
@@ -36,7 +40,7 @@ export interface IBuyButton {
     buttonClassNames?: string
 }
 
-const BuyButton: React.FC<IBuyButton> = ({
+const BuyButton = React.forwardRef<HTMLButtonElement, IBuyButton>(({
     productTitle,
     price,
     productURL,
@@ -51,7 +55,7 @@ const BuyButton: React.FC<IBuyButton> = ({
     shortProductDescription = undefined,
     variants = undefined,
     buttonClassNames = undefined
-}) => {
+}, ref) => {
     let buyButtonProps = {
         className: buttonClassNames + " buy-button snipcart-add-item",
         'data-item-id': productId,
@@ -66,26 +70,38 @@ const BuyButton: React.FC<IBuyButton> = ({
         'data-item-length': length,
         'data-item-width': width,
         'data-item-height': height,
+        'data-item-custom1-name': "Gift",
+        'data-item-custom1-type': "checkbox",
+        'data-item-custom2-name': "Comments",
+        'data-item-custom2-type': "textarea"
     }
 
-    if (variants) {
 
+    if (variants) {
+        let customOptions: ICustomDataProperty = {};
         // create new properties for variants
+        variants.map((variant, i) => {
+            let item = i + 3;
+
+            customOptions[`data-custom${item}-name`] = variant.name;
+            customOptions[`data-custom${item}-options`] = variant.options;
+        })
 
         buyButtonProps = {
             ...buyButtonProps,
-            // add new custom data options to product
+            ...customOptions
         }
     }
 
-    return(
+    return (
         <button
+            ref={ref}
             role='button'
             {...buyButtonProps}
         >
             Add to Cart
         </button>
     )
-}
+})
 
 export default BuyButton
