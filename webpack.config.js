@@ -8,7 +8,11 @@ module.exports = {
     rules: [
       {
         test: /\.ts(x?)$/,
-        exclude: /node_modules/,
+        exclude: {
+          or: [
+            /node_modules/
+          ]
+        },
         use: [
             {
                 loader: "ts-loader"
