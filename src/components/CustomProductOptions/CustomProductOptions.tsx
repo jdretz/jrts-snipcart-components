@@ -22,7 +22,7 @@ const CustomOptions: React.FC<ICustomOptionsProps> = ({
     const productVariants = variants.map((variant,i) => {
         return (
             <div key={variant._key+'-'+i}>
-                <h4>{variant.name}</h4>
+                <h4 className="custom-option-name">{variant.name}</h4>
                 {variant.options.map(option => <button
                     role='button'
                     key={variant._key+'-'+option}

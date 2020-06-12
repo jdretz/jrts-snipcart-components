@@ -1,4 +1,10 @@
 @import './components/Tag/tag';
 @import './components/SmallProduct/smallProduct';
 @import './components/BuyButton/buyButton';
-@import './components/CustomProductOptions/customProductOptions'
+@import './components/CustomProductOptions/customProductOptions';
+@import './components/Product/product';
+@import './fonts';
+
+body {
+    font-family: $base;
+}

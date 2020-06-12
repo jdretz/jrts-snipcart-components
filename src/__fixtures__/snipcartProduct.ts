@@ -114,35 +114,7 @@ export const responseDataWithVariants = {
                     }
                 ],
                 "allowOutOfStockPurchases": false
-            },
-            {
-                "stock": 1,
-                "variation": [
-                    {
-                        "name": "Sizes",
-                        "option": "11.5"
-                    },
-                    {
-                        "name": "Colors",
-                        "option": "Second Variant"
-                    }
-                ],
-                "allowOutOfStockPurchases": false
-            },
-            {
-                "stock": 1,
-                "variation": [
-                    {
-                        "name": "Sizes",
-                        "option": "13"
-                    },
-                    {
-                        "name": "Colors",
-                        "option": "True Linkswear TL-01 Grey"
-                    }
-                ],
-                "allowOutOfStockPurchases": false
-            },
+            }
         ],
         "metadata": null,
         "id": "0a8c5951-496c-423d-8c6f-ee49da8b9bcf",

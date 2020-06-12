@@ -27,7 +27,7 @@ describe("<BuyButton />", () => {
 
     expect(getByRole('button')).toMatchInlineSnapshot(`
     <button
-      class="regular-buy-button buy-button snipcart-add-item"
+      class="buy-button snipcart-add-item regular-buy-button"
       data-item-custom1-name="Gift"
       data-item-custom1-type="checkbox"
       data-item-custom2-name="Comments"
@@ -82,7 +82,7 @@ describe("<BuyButton />", () => {
 
     expect(getByRole('button')).toMatchInlineSnapshot(`
     <button
-      class="regular-buy-button buy-button snipcart-add-item"
+      class="buy-button snipcart-add-item regular-buy-button"
       data-custom3-name="Sizes"
       data-custom3-options="Small|Medium|Large[+2.00]"
       data-custom4-name="Colors"

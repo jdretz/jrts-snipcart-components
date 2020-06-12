@@ -1,0 +1,36 @@
+@import '../../fonts';
+@import '../../colors';
+
+.product-title {
+    border-bottom: 3px solid $low-light;
+}
+
+.product-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0.5rem 2rem;
+}
+
+.product-information-wrapper {
+    flex: 1 1 100%;
+    padding: 3px;
+}
+
+.product-image-wrapper {
+    flex: 2 2 100%;
+}
+
+.product-stock {
+    color: $high-light;
+    margin-left: 1rem;
+}
+
+.product-display-price {
+    margin-left: 1rem;
+    font-size: 1.3rem;
+}
+
+.product-description-wrapper {
+    margin: 1rem 0.5rem;
+    border-top: 1px solid #CCC;
+}

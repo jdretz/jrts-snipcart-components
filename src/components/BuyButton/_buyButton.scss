@@ -1,6 +1,6 @@
 .regular-buy-button {
     display: block;
-    padding: .3rem .75rem;
+    padding: .4rem .75rem .3rem .75rem;
     background-color: white;
     border: 1px solid black;
     border-radius: 5px;
@@ -9,9 +9,13 @@
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
     box-shadow: 0px 0px 8px #CCC;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     &:hover {
         background: black;
         color: white;
     }
+}
+
+.buy-button {
+    margin: 1rem;
 }

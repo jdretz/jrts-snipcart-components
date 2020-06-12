@@ -50,7 +50,8 @@ const Product: React.FC<IProduct> = ({
 
         if (node &&
             'name' in e.currentTarget.dataset &&
-            'value' in e.currentTarget.dataset) {
+            'value' in e.currentTarget.dataset &&
+            typeof window !== "undefined") {
 
             // Makes sure variantName is assigned a string
             // [redundant but typescript accepts it]
@@ -70,7 +71,6 @@ const Product: React.FC<IProduct> = ({
             // Sets the data options property to the selected value
             node.dataset[`custom${customOptionNumber}Options`] = variantValue;
 
-            
             let otherVariantOptions: HTMLCollection = document.getElementsByClassName(variantsKey);
 
             
@@ -107,13 +107,13 @@ const Product: React.FC<IProduct> = ({
     }, [variants, setVariantMap])
 
     return (
-        <div>
-            <div>
+        <div className="product-container">
+            <div className="product-image-wrapper">
                 {mainProductImage}
             </div>
-            <div>
+            <div className="product-information-wrapper">
                 <h2 className="product-title">{productTitle}</h2>
-                <h3>Total Available: {totalStock}</h3>
+                <h3 className="product-stock">{totalStock} <span style={{fontSize: '0.8em'}}>available</span></h3>
                 {displayPrice && <span className="product-display-price">{displayPrice}</span>}
                 <BuyButton
                     ref={buyButtonRef}
@@ -136,7 +136,10 @@ const Product: React.FC<IProduct> = ({
                     handleClick={handleClick}
                     variants={customOptions}
                 />}
-                {productDescription}
+                {/* <hr /> */}
+                <div className="product-description-wrapper">
+                    {productDescription}
+                </div>
             </div>
             {children}
         </div>

@@ -57,7 +57,7 @@ const BuyButton = React.forwardRef<HTMLButtonElement, IBuyButton>(({
     buttonClassNames = undefined
 }, ref) => {
     let buyButtonProps = {
-        className: buttonClassNames + " buy-button snipcart-add-item",
+        className: "buy-button snipcart-add-item " + buttonClassNames,
         'data-item-id': productId,
         'data-item-price': price,
         'data-item-url': productURL,

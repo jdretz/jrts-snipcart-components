@@ -31,13 +31,19 @@ const SmallProduct: React.FC<ISmallProduct> = ({
           <div className="small-product-image-wrapper">
             {productImage}
           </div>
-          <div className="small-product-info-container">
-            {vendor && <small>vendor</small>}
+          <div className="small-product-info-wrapper">
+            <div className="small-product-vendor-wrapper">
+              {vendor && <small>vendor</small>}
+            </div>
             <h2>{productName}</h2>
             {price && <p className="small-product-price">{price}</p>}
             {children}
-            {categories && categories}
-            {tags && <div>{tags}</div>}
+            <div className="small-product-category-wrapper">
+              {categories && categories}
+            </div>
+            <div className="small-product-tag-wrapper">
+              {tags && <div>{tags}</div>}
+            </div>
           </div>
         </div>
     )

@@ -15,7 +15,8 @@
   "author": "Jarrett Retz <jretz@jrts.info> (http://jrts.info)",
   "license": "ISC",
   "peerDependencies": {
-    "react": "^16.13.1"
+    "react": "^16.13.1",
+    "axios": "^0.19.2"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.9.0",
