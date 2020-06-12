@@ -1,6 +1,6 @@
 export type Variation = {
-    name: string,
-    option: string
+    name: string | undefined,
+    option: string | undefined
 }
 
 export type SnipcartVariation = {
@@ -16,12 +16,15 @@ export default async function getAvailableVariants(
     const selectedVariationsLength = variations.length;
 
     const productMatch = rawSnipcartVariants.filter(snipcartVariation => {
+
         return snipcartVariation.variation.length === selectedVariationsLength
     }).find(product => {
         let match = true;
 
-        while (product.variation.length > 0) {
-            let variant = product.variation[0];
+        let copyVariations = [...product.variation]
+
+        while (copyVariations.length > 0) {
+            let variant = copyVariations[0];
 
             let sameVariantOption = variations.find(({name}) => {
                 return name == variant.name
@@ -31,7 +34,7 @@ export default async function getAvailableVariants(
                 let possibleMatch = sameVariantOption.option === variant.option
 
                 if (possibleMatch) {
-                    product.variation.shift()
+                    copyVariations.shift()
                 } else {
                     match = false
                     break

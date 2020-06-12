@@ -1,7 +1,11 @@
 import React from 'react'
 
-import BuyButton, { IBuyButton } from '../BuyButton/BuyButton'
-import CustomOptions, { RawVariant } from '../CustomProductOptions/CustomProductOptions'
+import BuyButton, { IBuyButton } from '../BuyButton/BuyButton';
+import CustomOptions, { RawVariant } from '../CustomProductOptions/CustomProductOptions';
+import { Variation } from '../../util/getAvailableVariants';
+import VariantStock from '../VariantStock/VariantStock';
+
+import { responseDataWithVariants } from '../../__fixtures__/snipcartProduct'
 
 export interface IProduct extends IBuyButton {
     /** Optimized or enhanced image of product to display */
@@ -43,7 +47,8 @@ const Product: React.FC<IProduct> = ({
     // record values for the name of variant and whether it is selected
     // pass the value to the buy button if a variant is selected
     const buyButtonRef = React.createRef<HTMLButtonElement>();
-    let [variantMap, setVariantMap] = React.useState<{ [name: string]: number; }>({})
+    let [variantMap, setVariantMap] = React.useState<{ [name: string]: number; }>({});
+    let [selectedVariations, setSelectedVariations] = React.useState<Variation[]>([]);
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
         let node = buyButtonRef.current;
@@ -66,14 +71,52 @@ const Product: React.FC<IProduct> = ({
             const variantsKey = e.currentTarget.dataset.key ? e.currentTarget.dataset.key : '';
 
             // Retrieves custom option number
+            // the number is stored because snipcart expects custom names
+            // to be number custom options and not the name itself
             let customOptionNumber = variantMap[variantName]
 
             // Sets the data options property to the selected value
             node.dataset[`custom${customOptionNumber}Options`] = variantValue;
 
+            // Creates new variation for comparison
+            let selectedVariation: Variation = {
+                name: e.currentTarget.dataset.name,
+                option: e.currentTarget.dataset.value
+            };
+
+            let copyOfSelectedVariations = [...selectedVariations];
+
+            let duplicateVariation = copyOfSelectedVariations.some(variation => {
+                return variation.name === selectedVariation.name && variation.option === selectedVariation.option;
+            })
+
+            if (duplicateVariation) {
+                let matchingVariation = copyOfSelectedVariations.find(variation => {
+                    return variation.name === selectedVariation.name
+                })
+
+                if (matchingVariation) {
+                    matchingVariation.option = '';
+
+                    setSelectedVariations(copyOfSelectedVariations)
+                }
+            } else {
+                let matchingVariation = copyOfSelectedVariations.find(variation => {
+                    return variation.name === selectedVariation.name
+                })
+
+                if (matchingVariation) {
+                    matchingVariation.option = selectedVariation.option;
+
+                    setSelectedVariations(copyOfSelectedVariations)
+                }
+            }
+
+            // Find all the element options for that variation
             let otherVariantOptions: HTMLCollection = document.getElementsByClassName(variantsKey);
 
-            
+            // If the selected option was previously selected remove the
+            // className, if it wasn't, add the className
             if (e.currentTarget.classList.contains("selected")) {
                 e.currentTarget.classList.remove("selected")
                 e.currentTarget.blur();
@@ -102,9 +145,19 @@ const Product: React.FC<IProduct> = ({
                 variantMap[name] = item
             })
 
+            const initialVariatons: Variation[] = [];
+
+            variants.map(variant => {
+                initialVariatons.push({
+                    name: variant.name,
+                    option: ''
+                })
+            })
+
+            setSelectedVariations(initialVariatons)
             setVariantMap(variantMap);
         }
-    }, [variants, setVariantMap])
+    }, [variants, setVariantMap, setSelectedVariations])
 
     return (
         <div className="product-container">
@@ -136,7 +189,7 @@ const Product: React.FC<IProduct> = ({
                     handleClick={handleClick}
                     variants={customOptions}
                 />}
-                {/* <hr /> */}
+                <VariantStock selected={selectedVariations} raw={responseDataWithVariants.data.variants} />
                 <div className="product-description-wrapper">
                     {productDescription}
                 </div>
