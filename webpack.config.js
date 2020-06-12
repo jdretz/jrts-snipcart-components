@@ -10,7 +10,8 @@ module.exports = {
         test: /\.ts(x?)$/,
         exclude: {
           or: [
-            /node_modules/
+            /node_modules/,
+            /__fixtures__/
           ]
         },
         use: [
