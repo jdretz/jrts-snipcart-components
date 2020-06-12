@@ -92,11 +92,11 @@ export const responseDataWithVariants = {
                 "variation": [
                     {
                         "name": "Sizes",
-                        "option": "10"
+                        "option": "Small"
                     },
                     {
                         "name": "Colors",
-                        "option": "First Variant"
+                        "option": "Red"
                     }
                 ],
                 "allowOutOfStockPurchases": false

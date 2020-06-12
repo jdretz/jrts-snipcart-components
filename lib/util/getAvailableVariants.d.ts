@@ -1,11 +1,11 @@
 export declare type Variation = {
-    name: string;
-    option: string;
+    name: string | undefined;
+    option: string | undefined;
 };
 export declare type SnipcartVariation = {
     stock: number;
     variation: Variation[];
     allowOutOfStockPurchases: boolean;
 };
-export default function getAvailableVariants(variations: Variation[], rawSnipcartVariants: SnipcartVariation[]): Promise<SnipcartVariation | undefined>;
+export default function getAvailableVariants(variations: Variation[], rawSnipcartVariants: SnipcartVariation[]): Promise<number>;
 //# sourceMappingURL=getAvailableVariants.d.ts.map

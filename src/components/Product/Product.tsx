@@ -2,10 +2,8 @@ import React from 'react'
 
 import BuyButton, { IBuyButton } from '../BuyButton/BuyButton';
 import CustomOptions, { RawVariant } from '../CustomProductOptions/CustomProductOptions';
-import { Variation } from '../../util/getAvailableVariants';
+import { Variation, SnipcartVariation } from '../../util/getAvailableVariants';
 import VariantStock from '../VariantStock/VariantStock';
-
-import { responseDataWithVariants } from '../../__fixtures__/snipcartProduct'
 
 export interface IProduct extends IBuyButton {
     /** Optimized or enhanced image of product to display */
@@ -49,6 +47,7 @@ const Product: React.FC<IProduct> = ({
     const buyButtonRef = React.createRef<HTMLButtonElement>();
     let [variantMap, setVariantMap] = React.useState<{ [name: string]: number; }>({});
     let [selectedVariations, setSelectedVariations] = React.useState<Variation[]>([]);
+    let [rawVariants, setRawVariants] = React.useState<SnipcartVariation[]>([])
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
         let node = buyButtonRef.current;
@@ -189,7 +188,7 @@ const Product: React.FC<IProduct> = ({
                     handleClick={handleClick}
                     variants={customOptions}
                 />}
-                <VariantStock selected={selectedVariations} raw={responseDataWithVariants.data.variants} />
+                <VariantStock selected={selectedVariations} raw={rawVariants} />
                 <div className="product-description-wrapper">
                     {productDescription}
                 </div>
