@@ -3,26 +3,47 @@ import getAvailableVariants, { SnipcartVariation, Variation } from '../../util/g
 
 export interface IVariantStockProps {
     selected: Variation[],
-    raw: SnipcartVariation[]
+    raw: SnipcartVariation[],
+    variationLength: Number
 }
 
 const VariantStock: React.FC<IVariantStockProps> = ({
     selected,
-    raw
+    raw,
+    variationLength = 0
 }) => {
     let [stock, setStock] = React.useState<Number | undefined>(undefined);
+    let [loading, setLoading] = React.useState<Boolean>(true);
+    let [allVariantsSelected, setAllVariantsSelected] = React.useState<Boolean>(false)
 
     React.useEffect(() => {
-
         getAvailableVariants(selected, raw).then(newStock => {
             setStock(newStock);
-        }).catch(e => console.log(e));
+        }).catch(e => console.log(e)).finally(() => {
+            setLoading(false);
+        })
 
-    }, [getAvailableVariants, selected, raw, setStock])
+        let variantCalculation = Number(selected.filter(item => item.option !== "").length) === Number(variationLength)
+
+        setAllVariantsSelected(variantCalculation);
+
+    }, [getAvailableVariants, selected, raw, setStock, setLoading, variationLength])
+
 
     return (
         <div className="variant-stock-container">
-            <p>{JSON.stringify(stock)}</p>
+            {!loading ?
+                    <p style={{
+                        fontSize: '1.1rem',
+                        borderBottom: stock && stock > 0 ? '2px solid green' : allVariantsSelected ? '2px solid red' : '2px solid #CCC'
+                        }} className="product-stock">{variationLength && allVariantsSelected ?
+                    `${stock} available`
+                    :
+                    'Please select all variants'
+                }</p>
+            :
+            <div className="loader" />
+            }
         </div>
     )
 

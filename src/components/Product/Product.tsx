@@ -165,7 +165,10 @@ const Product: React.FC<IProduct> = ({
             </div>
             <div className="product-information-wrapper">
                 <h2 className="product-title">{productTitle}</h2>
-                <h3 className="product-stock">{totalStock} <span style={{fontSize: '0.8em'}}>available</span></h3>
+                <h3 style={{
+                    marginTop: '.3rem',
+                    marginBottom: '2rem'
+                }} className="product-stock">{totalStock} <span style={{fontSize: '0.8em'}}>available</span></h3>
                 {displayPrice && <span className="product-display-price">{displayPrice}</span>}
                 <BuyButton
                     ref={buyButtonRef}
@@ -188,7 +191,10 @@ const Product: React.FC<IProduct> = ({
                     handleClick={handleClick}
                     variants={customOptions}
                 />}
-                <VariantStock selected={selectedVariations} raw={rawVariants} />
+                <VariantStock
+                    variationLength={Object.keys(variantMap).length}
+                    selected={selectedVariations}
+                    raw={rawVariants} />
                 <div className="product-description-wrapper">
                     {productDescription}
                 </div>

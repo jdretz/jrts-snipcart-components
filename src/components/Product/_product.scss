@@ -3,6 +3,7 @@
 
 .product-title {
     border-bottom: 3px solid $low-light;
+    margin-bottom: .2rem;
 }
 
 .product-container {
@@ -23,11 +24,13 @@
 .product-stock {
     color: $high-light;
     margin-left: 1rem;
+    display: inline-block;
 }
 
 .product-display-price {
     margin-left: 1rem;
     font-size: 1.3rem;
+    display: block;
 }
 
 .product-description-wrapper {
