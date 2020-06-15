@@ -4,12 +4,15 @@
   "description": "Component library for Snipcart components",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "homepage": "https://jdretz.github.io/jrts-snipcart-components",
   "scripts": {
     "build": "webpack",
     "styleguide": "styleguidist server",
     "styleguide:build": "styleguidist build",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "predeploy": "npm run styleguide:build",
+    "deploy": "gh-pages -d styleguide"
   },
   "keywords": [],
   "author": "Jarrett Retz <jretz@jrts.info> (http://jrts.info)",
@@ -24,6 +27,7 @@
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
     "css-loader": "^3.5.3",
+    "gh-pages": "^3.0.0",
     "jest": "^26.0.1",
     "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.14.1",

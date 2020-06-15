@@ -5,6 +5,13 @@ import CustomOptions, { RawVariant } from '../CustomProductOptions/CustomProduct
 import { Variation, SnipcartVariation } from '../../util/getAvailableVariants';
 import VariantStock from '../VariantStock/VariantStock';
 
+/**
+ * The only true button.
+ *
+ * @visibleName The Best Button Ever 🐙
+ */
+
+
 export interface IProduct extends IBuyButton {
     /** Optimized or enhanced image of product to display */
     mainProductImage: React.ReactElement
